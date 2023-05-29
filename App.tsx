@@ -20,7 +20,7 @@ export default function App() {
 
     if (granted) {
       const currentPosition = await getCurrentPositionAsync();
-      setLocations([...locations, currentPosition]);
+      setLocations((prevstate) => [...prevstate, currentPosition]);
       mapRef.current?.setCamera({
         zoom: 16,
       });
@@ -39,7 +39,7 @@ export default function App() {
         distanceInterval: 4,
       },
       (response) => {
-        setLocations([...locations, response]);
+        setLocations((prevstate) => [...prevstate, response]);
         console.log("Location Nova!!");
         mapRef.current?.animateCamera({
           center: response.coords,
